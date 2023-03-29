@@ -148,7 +148,7 @@ All models of **r_em** have been optimized to run on a standard desktop computer
 ```bibtex
     @article{LCK_2023,
       Author = {I.Lobato and T. Friedrich and S. Van Aert},
-      Journal = {npj computational materials},
+      Journal = {Arvix},
       Title = {Deep convolutional neural networks to restore single-shot electron microscopy images},
       Year = {2023},
       volume  = {xxx},
