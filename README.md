@@ -76,14 +76,20 @@ import matplotlib.pyplot as plt
 
 from r_em.model import load_r_em_net, load_test_data
 
-x, y = load_test_data()
+# select network
+net = 'hrstem'
 
-net_r_cbed = load_r_em_net()
+# load its corresponding data
+x, y = load_test_data(net)
+
+ # load its corresponding model
+net_r_cbed = load_r_em_net(net)
 net_r_cbed.summary()
 
 n_data = x.shape[0]
 batch_size = 16
 
+# run inference
 y_p = net_r_cbed.predict(x, batch_size)
 
 fig, axs = plt.subplots(1, 3, figsize=(12, 6))
@@ -110,7 +116,7 @@ for ik in range(n_data):
     axs[1].imshow(y_p_ik, vmin=vmin, vmax=vmax, cmap='viridis')
     axs[1].set_xticks([])
     axs[1].set_yticks([])
-    axs[1].grid(False)I.Lobato and T. Friedrich and S. Van Aert
+    axs[1].grid(False)
     axs[1].set_title(f"Restored {net} image", fontsize=14)
     if cb[1] is not None:
         cb[1].remove()

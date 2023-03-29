@@ -41,11 +41,14 @@ def load_test_data(path: str = None) -> Tuple[np.ndarray, np.ndarray]:
 def fcn_inference():
     root = os.getcwd()
 
-    net = 'hrtem'
-    
-    fn_data = os.path.join(root, f'test_data_{net}.h5')
+    # select network
+    net = 'hrstem'
+
+    # load its corresponding data
+    fn_data = os.path.join(root, 'test_data', f'data_{net}.h5')
     x, y = load_test_data(fn_data)
 
+    # load its corresponding model
     fn_model = os.path.join(root, 'models', f'r_{net}_model')
     net_r_cbed = tf.keras.models.load_model(fn_model)
     net_r_cbed.summary()
@@ -53,6 +56,7 @@ def fcn_inference():
     n_data = x.shape[0]
     batch_size = 16
 
+    # run inference
     y_p = net_r_cbed.predict(x, batch_size)
 
     fig, axs = plt.subplots(1, 3, figsize=(12, 6))
