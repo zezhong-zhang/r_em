@@ -11,7 +11,7 @@ I.Lobato<sup>1,2</sup>, T. Friedrich<sup>1,2</sup>, S. Van Aert<sup>1,2</sup>
 State-of-the-art electron microscopes such as scanning electron microscopes (SEM), scanning transmission electron microscopes (STEM) and transmission electron microscopes (TEM) have become increasingly sophisticated. However, the quality of experimental images is often hampered by stochastic and deterministic distortions arising from the instrument or its environment. These distortions can arise during any stage of the imaging process, including image acquisition, transmission, or visualization. In this paper, we will discuss the main sources of distortion in TEM and S(T)EM images, develop models to describe them and propose a method to correct these distortions using a convolutional neural network. We demonstrate the effectiveness of our approach on a variety of experimental images and show that it can significantly improve the signal-to-noise ratio resulting in an increase in the amount of quantitative structural information that can be extracted from the image. Overall, our findings provide a powerful framework for improving the quality of electron microscopy images and advancing the field of structural analysis and quantification in materials science and biology. The source code and trained models for our approach are made available in the accompanying repository.
 
 # Installation via Pip
-To use r_em, you need to install TensorFlow and its CUDA libraries if you want to use GPU acceleration. The specific version of TensorFlow required by r_em depends on your operating system. It is recommended to install TensorFlow in a virtual environment to avoid conflicts with other packages.
+To use **r_em**, you need to install TensorFlow and its CUDA libraries if you want to use GPU acceleration. The specific version of TensorFlow required by **r_em** depends on your operating system. It is recommended to install TensorFlow in a virtual environment to avoid conflicts with other packages.
 
 ## 1. Create a conda environment
 [miniconda](https://docs.conda.io/en/latest/miniconda.html) is the recommended approach for installing TensorFlow with GPU support. It creates a separate environment to avoid changing any installed software in your system. This is also the easiest way to install the required software especially for the GPU setup.
@@ -83,14 +83,14 @@ net = 'hrstem'
 x, y = load_test_data(net)
 
  # load its corresponding model
-net_r_cbed = load_r_em_net(net)
-net_r_cbed.summary()
+r_em = load_r_em_net(net)
+r_em.summary()
 
 n_data = x.shape[0]
 batch_size = 16
 
 # run inference
-y_p = net_r_cbed.predict(x, batch_size)
+y_p = r_em.predict(x, batch_size)
 
 fig, axs = plt.subplots(1, 3, figsize=(12, 6))
 
@@ -142,13 +142,13 @@ for ik in range(n_data):
 ## 5. Performance
 All models of **r_em** have been optimized to run on a standard desktop computer, and its performance can be significantly improved by utilizing GPU acceleration.
 
-## 5. How to cite:
+## 6. How to cite:
 **Please cite r_em in your publications if it helps your research:**
 
 ```bibtex
     @article{LCK_2023,
       Author = {I.Lobato and T. Friedrich and S. Van Aert},
-      Journal = {Arvix},
+      Journal = {Arxiv},
       Title = {Deep convolutional neural networks to restore single-shot electron microscopy images},
       Year = {2023},
       volume  = {xxx},
