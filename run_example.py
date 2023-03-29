@@ -42,22 +42,22 @@ def fcn_inference():
     root = os.getcwd()
 
     # select network from [hrsem, lrsem, hrstem, lrstem, hrtem, lrtem]
-    net = 'hrstem'
+    net_name = 'hrstem'
 
     # load its corresponding data
-    fn_data = os.path.join(root, 'test_data', f'data_{net}.h5')
+    fn_data = os.path.join(root, 'test_data', f'data_{net_name}.h5')
     x, y = load_test_data(fn_data)
 
     # load its corresponding model
-    fn_model = os.path.join(root, 'models', f'r_{net}_model')
-    net_r_em = tf.keras.models.load_model(fn_model)
-    net_r_em.summary()
+    fn_model = os.path.join(root, 'models', f'r_{net_name}_model')
+    r_em_nn = tf.keras.models.load_model(fn_model)
+    r_em_nn.summary()
 
     n_data = x.shape[0]
     batch_size = 16
 
     # run inference
-    y_p = net_r_em.predict(x, batch_size)
+    y_p = r_em_nn.predict(x, batch_size)
 
     fig, axs = plt.subplots(1, 3, figsize=(12, 6))
 
@@ -75,7 +75,7 @@ def fcn_inference():
         axs[0].set_xticks([])
         axs[0].set_yticks([])
         axs[0].grid(False)
-        axs[0].set_title(f"Detected {net} image", fontsize=14)
+        axs[0].set_title(f"Detected {net_name} image", fontsize=14)
         if cb[0] is not None:
             cb[0].remove()
         cb[0] = fig.colorbar(axs[0].images[0], ax=axs[0], orientation='vertical', shrink=0.6)
@@ -84,7 +84,7 @@ def fcn_inference():
         axs[1].set_xticks([])
         axs[1].set_yticks([])
         axs[1].grid(False)
-        axs[1].set_title(f"Restored {net} image", fontsize=14)
+        axs[1].set_title(f"Restored {net_name} image", fontsize=14)
         if cb[1] is not None:
             cb[1].remove()
         cb[1] = fig.colorbar(axs[1].images[0], ax=axs[1], orientation='vertical', shrink=0.6)
@@ -93,13 +93,13 @@ def fcn_inference():
         axs[2].set_xticks([])
         axs[2].set_yticks([])
         axs[2].grid(False)
-        axs[2].set_title(f"Ground truth {net} image", fontsize=14)
+        axs[2].set_title(f"Ground truth {net_name} image", fontsize=14)
         if cb[2] is not None:
             cb[2].remove()
         cb[2] = fig.colorbar(axs[2].images[0], ax=axs[2], orientation='vertical', shrink=0.6)
 
         if remote_ssh:
-            plt.savefig(f"restored_{net}.png", format='png')
+            plt.savefig(f"restored_{net_name}.png", format='png')
         else:
             fig.show()
 
