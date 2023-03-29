@@ -57,7 +57,7 @@ pip install tensorflow==2.11.*
 Once you've installed TensorFlow, you can install **r_em** using pip:
 
 ```
-pip install ilp_r_em
+pip install r_em
 ```
 This command will install the latest version of **r_em** and its required dependencies.
 
