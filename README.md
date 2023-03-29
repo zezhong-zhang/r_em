@@ -134,10 +134,10 @@ for ik in range(n_data):
 ```
 
 ## 5. Performance
-The architecture of **r_em** has been optimized to run on a standard desktop computer, and its performance can be significantly improved by utilizing GPU acceleration.
+All models of **r_em** have been optimized to run on a standard desktop computer, and its performance can be significantly improved by utilizing GPU acceleration.
 
 ## 5. How to cite:
-**Please cite rt_ppiscs in your publications if it helps your research:**
+**Please cite r_em in your publications if it helps your research:**
 
 ```bibtex
     @article{LCK_2023,
